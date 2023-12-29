@@ -92,9 +92,7 @@ class Conductor: S1Protocol {
       }
     }
 
-    func bind(_ control: S1Control,
-              to parameter: S1Parameter,
-              callback closure: S1ControlCallback? = nil) {
+    func bind(_ control: S1Control, to parameter: S1Parameter, callback closure: S1ControlCallback? = nil) {
         let binding = (parameter, control)
         bindings.append(binding)
         let control = binding.1
@@ -138,8 +136,8 @@ class Conductor: S1Protocol {
                         control inputControl: S1Control?,
                         value inputValue: Double) {
 
-        // cannot access synth until it is initialized and started
-        if !started { return }
+        // do not access synth until it is initialized and started
+        guard started else { return }
 
         // for every binding of type param
         for binding in bindings where parameter == binding.0 {
@@ -151,6 +149,7 @@ class Conductor: S1Protocol {
                     control.value = inputValue
                 }
             } else {
+                
                 // nil control = global update (i.e., preset change)
                 control.value = inputValue
             }
@@ -224,14 +223,13 @@ class Conductor: S1Protocol {
 
         #if !targetEnvironment(macCatalyst)
         if let au = AudioKit.engine.outputNode.audioUnit {
+
             // IAA Host Icon
             audioUnitPropertyListener = AudioUnitPropertyListener { (_, _) in
                 let headerVC = self.viewControllers.first(where: { $0 is HeaderViewController })
                     as? HeaderViewController
-
                 headerVC?.hostAppIcon.image = AudioOutputUnitGetHostIcon(au, 44)
             }
-
             do {
                 try au.add(listener: audioUnitPropertyListener,
                            toProperty: kAudioUnitProperty_IsInterAppConnected)
@@ -254,13 +252,25 @@ class Conductor: S1Protocol {
         headerVC?.updateDisplayLabel(parameter, value: value)
     }
 
+    var tuningName: String {
+        var name = Tuning().name
+        if let tuningsVC = self.viewControllers.first(where: { $0 is TuningsPanelController }) as? TuningsPanelController {
+            name = tuningsVC.tuningModel.tuningName
+        }
+        return name
+    }
+
+    var tuningFileBaseName: String {
+        var name = Tuning().name
+        if let tuningsVC = self.viewControllers.first(where: { $0 is TuningsPanelController }) as? TuningsPanelController {
+            name = tuningsVC.tuningModel.tuningFileBaseName
+        }
+        return name
+    }
+
     // MARK: - S1Protocol
 
-    // called by DSP on main thread
     func dependentParameterDidChange(_ parameter: DependentParameter) {
-
-        // add panels with dependent parameters here
-
         let effectsPanel = self.viewControllers.first(where: { $0 is EffectsPanelController })
             as? EffectsPanelController
         effectsPanel?.dependentParameterDidChange(parameter)

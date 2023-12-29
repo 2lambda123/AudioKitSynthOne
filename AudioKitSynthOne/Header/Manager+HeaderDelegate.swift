@@ -117,7 +117,7 @@ extension Manager: HeaderDelegate {
     }
     
     func appsPressed() {
-         performSegue(withIdentifier: "SegueToApps", sender: self)
+        showMoreAppsPage()
     }
 
     func morePressed() {
@@ -131,9 +131,22 @@ extension Manager: HeaderDelegate {
         }
 
         if signedMailingList {
-            performSegue(withIdentifier: "SegueToMore", sender: self)
+            showMoreAppsPage()
         } else {
             performSegue(withIdentifier: "SegueToMailingList", sender: self)
+        }
+    }
+    
+    func showMoreAppsPage() {
+        if self.conductor.device == .pad {
+            // performSegue(withIdentifier: "SegueToApps", sender: self)
+            if let url = URL(string: "https://audiokitpro.com/ipadapps") {
+                UIApplication.shared.open(url)
+            }
+        } else { // iPhone
+            if let url = URL(string: "https://audiokitpro.com/iphoneapps/") {
+                UIApplication.shared.open(url)
+            }
         }
     }
     
@@ -148,7 +161,7 @@ extension Manager: HeaderDelegate {
         conductor.synth.reset() // kinder, gentler panic
         // conductor.synth.resetDSP() // nuclear panic option
 
-        // Turn off held notes on keybaord
+        // Turn off held notes on keyboard
         keyboardView.allNotesOff()
 
         let title = NSLocalizedString("Midi Panic", comment: "Alert Title: MIDI Panic")

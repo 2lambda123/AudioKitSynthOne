@@ -13,13 +13,12 @@ extension Manager {
     // MARK: - Preset Load/Save
 
     func loadPreset() {
-
         guard let s = conductor.synth else {
             print("ERROR:can't load preset if synth is not initialized")
             return
         }
 
-        // The DEV panel has toggles (stored in settings) that impact loading of subsets of parameters of a Preset
+        // The DEV panel has toggles (stored in app settings) that impact loading of subsets of parameters of a Preset
 
         if !appSettings.freezeDelay {
             s.setSynthParameter(.delayOn, activePreset.delayToggled)
@@ -47,7 +46,13 @@ extension Manager {
             s.setSynthParameter(.compressorReverbWetMakeupGain, activePreset.compressorReverbWetMakeupGain)
         }
 
-        if !appSettings.freezeArpRate {
+        if appSettings.freezeArpRate {
+
+            // use app settings tempo
+            s.setSynthParameter(.arpRate, appSettings.frozenArpRateValue)
+        } else {
+
+            // use preset's tempo
             s.setSynthParameter(.arpRate, activePreset.arpRate)
         }
 
@@ -66,6 +71,7 @@ extension Manager {
             }
         }
 
+        s.setSynthParameter(.frequencyA4, activePreset.frequencyA4)
         if appSettings.saveTuningWithPreset {
             if let m = activePreset.tuningMasterSet {
                 tuningsPanel.setTuning(name: activePreset.tuningName, masterArray: m)
@@ -138,7 +144,6 @@ extension Manager {
         s.setSynthParameter(.compressorMasterMakeupGain, activePreset.compressorMasterMakeupGain)
         s.setSynthParameter(.pitchbendMinSemitones, activePreset.pitchbendMinSemitones)
         s.setSynthParameter(.pitchbendMaxSemitones, activePreset.pitchbendMaxSemitones)
-        s.setSynthParameter(.frequencyA4, activePreset.frequencyA4)
         s.setSynthParameter(.oscBandlimitEnable, activePreset.oscBandlimitEnable)
         s.setSynthParameter(.transpose, Double(activePreset.transpose))
         s.setSynthParameter(.adsrPitchTracking, activePreset.adsrPitchTracking)
@@ -152,7 +157,6 @@ extension Manager {
             AKLog("Could not save synth state to preset because synth is not instantiated")
             return
         }
-
         activePreset.arpRate = s.getSynthParameter(.arpRate)
         activePreset.delayToggled = s.getSynthParameter(.delayOn)
         activePreset.delayFeedback = s.getSynthParameter(.delayFeedback)
@@ -279,6 +283,7 @@ extension Manager {
         // metadata
         activePreset.userText = presetsViewController.currentPreset.userText
 
+        // save preset
         presetsViewController.savePreset(activePreset)
         conductor.updateDefaultValues()
     }

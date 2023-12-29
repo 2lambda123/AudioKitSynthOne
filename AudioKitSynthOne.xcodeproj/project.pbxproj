@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07D60A51269B90F700FB0778 /* S1DSPHorizon.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07D60A50269B90F700FB0778 /* S1DSPHorizon.mm */; };
 		48C3EE7437FA1B1E7916844E /* Pods_AudioKitSynthOne.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA27CDAC229BF66A1C649B42 /* Pods_AudioKitSynthOne.framework */; };
 		69115F3E2363BBA100B144A5 /* Conductor+Audiobus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69115F3D2363BBA000B144A5 /* Conductor+Audiobus.swift */; };
 		692C04F82370C43A008CBDDA /* AppDelegate+PlatformServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69824682236EE83A00407DF4 /* AppDelegate+PlatformServices.swift */; };
@@ -22,6 +23,7 @@
 		9425AAFE23269E4000C7581F /* Spidericemidas.json in Resources */ = {isa = PBXBuildFile; fileRef = 9425AAFD23269E4000C7581F /* Spidericemidas.json */; };
 		94656AED205F410900634B2C /* KeyboardShowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94656AEC205F410900634B2C /* KeyboardShowButton.swift */; };
 		946980572169258A007EAA5B /* String+CapitalizeFirst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946980562169258A007EAA5B /* String+CapitalizeFirst.swift */; };
+		947822152561C465005FE935 /* Synth Tutorials.json in Resources */ = {isa = PBXBuildFile; fileRef = 947822142561C465005FE935 /* Synth Tutorials.json */; };
 		947956A91F329AB200FE5D9B /* Stepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947956A81F329AB100FE5D9B /* Stepper.swift */; };
 		947956AD1F329AB200FE5D9B /* StepperStyleKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947956A51F329AB100FE5D9B /* StepperStyleKit.swift */; };
 		947956B31F32A70400FE5D9B /* ToggleSwitchStyleKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947956B21F32A70300FE5D9B /* ToggleSwitchStyleKit.swift */; };
@@ -202,6 +204,8 @@
 		F40636FD22E3EACC00A422D3 /* TuningsPitchWheelOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40636FC22E3EACC00A422D3 /* TuningsPitchWheelOverlayView.swift */; };
 		F40636FF22E3EECB00A422D3 /* KeyboardView+Draw12ET.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40636FE22E3EECB00A422D3 /* KeyboardView+Draw12ET.swift */; };
 		F406370122E3EF7F00A422D3 /* KeyboardView+DrawMicrotonal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F406370022E3EF7F00A422D3 /* KeyboardView+DrawMicrotonal.swift */; };
+		F4658CA623F7C00900C1AB62 /* S1MessageQueues.mm in Sources */ = {isa = PBXBuildFile; fileRef = F4658CA523F7C00900C1AB62 /* S1MessageQueues.mm */; };
+		F4658CA823FE5F9F00C1AB62 /* Manager+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4658CA723FE5F9F00C1AB62 /* Manager+Notifications.swift */; };
 		F473515722A0D63900869AFB /* TuningsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F473515622A0D63900869AFB /* TuningsViewController.swift */; };
 		F47C27E42207C12100CA7541 /* Tunings+TuneUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47C27E32207C12100CA7541 /* Tunings+TuneUp.swift */; };
 		F47C27E62207C74000CA7541 /* TuningsPanel+TuneUpDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47C27E52207C74000CA7541 /* TuningsPanel+TuneUpDelegate.swift */; };
@@ -300,6 +304,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		07D60A4F269B90F600FB0778 /* S1DSPHorizon.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = S1DSPHorizon.hpp; sourceTree = "<group>"; };
+		07D60A50269B90F700FB0778 /* S1DSPHorizon.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = S1DSPHorizon.mm; sourceTree = "<group>"; };
 		3A319653D44EC41DAFAEB963 /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		45E1A7C3C54D27427C4A71B1 /* Pods_AKS1Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AKS1Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		51EC225D22B5EE94B01AA474 /* Pods-AudioKitSynthOne.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AudioKitSynthOne.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AudioKitSynthOne/Pods-AudioKitSynthOne.debug.xcconfig"; sourceTree = "<group>"; };
@@ -349,6 +355,7 @@
 		94656AEC205F410900634B2C /* KeyboardShowButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardShowButton.swift; sourceTree = "<group>"; };
 		946980562169258A007EAA5B /* String+CapitalizeFirst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+CapitalizeFirst.swift"; sourceTree = "<group>"; };
 		94780FEF1F9B0108006D3710 /* AudioKitSynthOne.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AudioKitSynthOne.entitlements; sourceTree = "<group>"; };
+		947822142561C465005FE935 /* Synth Tutorials.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Synth Tutorials.json"; sourceTree = "<group>"; };
 		947956A51F329AB100FE5D9B /* StepperStyleKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepperStyleKit.swift; sourceTree = "<group>"; };
 		947956A81F329AB100FE5D9B /* Stepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stepper.swift; sourceTree = "<group>"; };
 		947956B21F32A70300FE5D9B /* ToggleSwitchStyleKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleSwitchStyleKit.swift; sourceTree = "<group>"; };
@@ -654,6 +661,9 @@
 		F40636FE22E3EECB00A422D3 /* KeyboardView+Draw12ET.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyboardView+Draw12ET.swift"; sourceTree = "<group>"; };
 		F406370022E3EF7F00A422D3 /* KeyboardView+DrawMicrotonal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyboardView+DrawMicrotonal.swift"; sourceTree = "<group>"; };
 		F437E99E20EB22D00096FEAC /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		F4658CA423F7BACD00C1AB62 /* S1MessageQueues.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = S1MessageQueues.h; sourceTree = "<group>"; };
+		F4658CA523F7C00900C1AB62 /* S1MessageQueues.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = S1MessageQueues.mm; sourceTree = "<group>"; };
+		F4658CA723FE5F9F00C1AB62 /* Manager+Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Manager+Notifications.swift"; sourceTree = "<group>"; };
 		F473515622A0D63900869AFB /* TuningsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuningsViewController.swift; sourceTree = "<group>"; };
 		F47C27E32207C12100CA7541 /* Tunings+TuneUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tunings+TuneUp.swift"; sourceTree = "<group>"; };
 		F47C27E52207C74000CA7541 /* TuningsPanel+TuneUpDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuningsPanel+TuneUpDelegate.swift"; sourceTree = "<group>"; };
@@ -967,6 +977,7 @@
 				949907D8229F692800E3DE1B /* Sound of Izrael 2.json */,
 				9425AAFD23269E4000C7581F /* Spidericemidas.json */,
 				941752B920E2BD2E0076D953 /* Starter Bank.json */,
+				947822142561C465005FE935 /* Synth Tutorials.json */,
 				C435C51920C52D1700DAECCD /* User.json */,
 			);
 			path = Data;
@@ -1068,6 +1079,8 @@
 			children = (
 				C435C56F20C530C900DAECCD /* S1AudioUnit.h */,
 				C435C57020C530C900DAECCD /* S1AudioUnit.mm */,
+				F4658CA423F7BACD00C1AB62 /* S1MessageQueues.h */,
+				F4658CA523F7C00900C1AB62 /* S1MessageQueues.mm */,
 			);
 			path = "Audio Unit";
 			sourceTree = "<group>";
@@ -1090,6 +1103,8 @@
 				C4B490FA20C6560000FD565A /* S1DSPKernel+startStopNotes.mm */,
 				C4B490F020C64ED200FD565A /* S1DSPKernel+tapers.mm */,
 				C4B490FC20C6564D00FD565A /* S1DSPKernel+toggleKeys.mm */,
+				07D60A4F269B90F600FB0778 /* S1DSPHorizon.hpp */,
+				07D60A50269B90F700FB0778 /* S1DSPHorizon.mm */,
 			);
 			path = Kernel;
 			sourceTree = "<group>";
@@ -1219,6 +1234,7 @@
 				C432979420CB2D620063F795 /* Manager+callbacks.swift */,
 				C4B4916420C7C72900FD565A /* Manager+EmbeddedViewsDelegate.swift */,
 				C4B4916620C7C72900FD565A /* Manager+PushNotification.swift */,
+				F4658CA723FE5F9F00C1AB62 /* Manager+Notifications.swift */,
 				C4B4915E20C7C72900FD565A /* UIViewController+DisplayAlert.swift */,
 				C4B4916020C7C72900FD565A /* UpdatableViewController.swift */,
 			);
@@ -1644,6 +1660,7 @@
 				F482CC5C2123CDE70093ADC8 /* square_0010.json in Resources */,
 				94985FF520D8908600D71239 /* JEC.json in Resources */,
 				F482CC3B2123CDE70093ADC8 /* triangle_0042.json in Resources */,
+				947822152561C465005FE935 /* Synth Tutorials.json in Resources */,
 				F482CC482123CDE70093ADC8 /* triangle_0168.json in Resources */,
 				F482CC542123CDE70093ADC8 /* square_0000.json in Resources */,
 				F482CC5F2123CDE70093ADC8 /* sawtooth_1348.json in Resources */,
@@ -1812,6 +1829,7 @@
 				C435C57B20C530C900DAECCD /* AEWeakRetainingProxy.m in Sources */,
 				C43A13AE20FC4C7C009E2B30 /* ABLLinkManager.swift in Sources */,
 				C4B491B520C7D19F00FD565A /* TempoStepper.swift in Sources */,
+				F4658CA823FE5F9F00C1AB62 /* Manager+Notifications.swift in Sources */,
 				C435C58220C530C900DAECCD /* AEMainThreadEndpoint.m in Sources */,
 				C4F7ECB71F244A510011B119 /* KnobStyleKit.swift in Sources */,
 				C4B491BD20C7DEB100FD565A /* SliderStyleKit.swift in Sources */,
@@ -1907,6 +1925,7 @@
 				946980572169258A007EAA5B /* String+CapitalizeFirst.swift in Sources */,
 				692C04F82370C43A008CBDDA /* AppDelegate+PlatformServices.swift in Sources */,
 				F4AD9EE2224856C2002B0E2E /* MIDIToggleButton.swift in Sources */,
+				07D60A51269B90F700FB0778 /* S1DSPHorizon.mm in Sources */,
 				C4B491BC20C7DEB100FD565A /* ArpButtonStyleKit.swift in Sources */,
 				C4B4919420C7C7C500FD565A /* PresetEditorViewController.swift in Sources */,
 				C4B4918620C7C79C00FD565A /* Presets+PresetCellDelegate.swift in Sources */,
@@ -1960,6 +1979,7 @@
 				C4B4916720C7C72A00FD565A /* PanelController.swift in Sources */,
 				C4B491BE20C7DEB100FD565A /* ArpDirectionStyleKit.swift in Sources */,
 				C4B4916A20C7C72A00FD565A /* UpdatableViewController.swift in Sources */,
+				F4658CA623F7C00900C1AB62 /* S1MessageQueues.mm in Sources */,
 				F40636FB22E3EA2300A422D3 /* String+Drawing.swift in Sources */,
 				C435C57C20C530C900DAECCD /* AEMessageQueue.m in Sources */,
 				C4B4910520C7C5C500FD565A /* ArpDirectionButton.swift in Sources */,
@@ -2231,7 +2251,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3A319653D44EC41DAFAEB963 /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */;
 			buildSettings = {
-				ABLETON_ENABLED = 0;
+				ABLETON_ENABLED = 1;
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -2239,13 +2259,13 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.4.1;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9W69ZP8S5F;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 1.4.1;
+				MARKETING_VERSION = 101.8.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.audiokitpro.AudioKitSynthOne.OneSignalNotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -2258,7 +2278,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D96BC33C5D07149EC2FAB8CE /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */;
 			buildSettings = {
-				ABLETON_ENABLED = 0;
+				ABLETON_ENABLED = 1;
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -2266,13 +2286,13 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.4.1;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9W69ZP8S5F;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 1.4.1;
+				MARKETING_VERSION = 101.8.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.audiokitpro.AudioKitSynthOne.OneSignalNotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -2421,7 +2441,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 51EC225D22B5EE94B01AA474 /* Pods-AudioKitSynthOne.debug.xcconfig */;
 			buildSettings = {
-				ABLETON_ENABLED = 0;
+				ABLETON_ENABLED = 1;
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -2431,7 +2451,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.4.1;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9W69ZP8S5F;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = AudioKitSynthOne/Info.plist;
@@ -2441,7 +2461,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/AudioKitSynthOne/Link/lib",
 				);
-				MARKETING_VERSION = 1.4.1;
+				MARKETING_VERSION = 101.8.1;
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
 					"-fno-aligned-allocation",
@@ -2465,7 +2485,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E2883EE9358887836A57FE08 /* Pods-AudioKitSynthOne.release.xcconfig */;
 			buildSettings = {
-				ABLETON_ENABLED = 0;
+				ABLETON_ENABLED = 1;
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -2475,7 +2495,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.4.1;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9W69ZP8S5F;
 				GCC_OPTIMIZATION_LEVEL = fast;
 				INFOPLIST_FILE = AudioKitSynthOne/Info.plist;
@@ -2485,7 +2505,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/AudioKitSynthOne/Link/lib",
 				);
-				MARKETING_VERSION = 1.4.1;
+				MARKETING_VERSION = 101.8.1;
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
 					"-fno-aligned-allocation",

@@ -10,98 +10,58 @@ import AudioKit
 import UIKit
 import Disk 
 
-
 protocol EmbeddedViewsDelegate: AnyObject {
-
     func switchToChildPanel(_ newView: ChildPanel, isOnTop: Bool)
-
 }
 
 public class Manager: UpdatableViewController, AudioRecorderFileDelegate {
-
     @IBOutlet weak var topContainerView: UIView!
-
     @IBOutlet weak var bottomContainerView: UIView!
-
     @IBOutlet weak var keyboardView: KeyboardView!
-
     @IBOutlet var keyboardTopConstraint: NSLayoutConstraint!
-
     @IBOutlet var keyboardLeftConstraint: NSLayoutConstraint!
-
     @IBOutlet var keyboardRightConstraint: NSLayoutConstraint!
-
     @IBOutlet var topPanelheight: NSLayoutConstraint!
-
     @IBOutlet weak var midiButton: SynthButton!
-
     @IBOutlet weak var holdButton: MIDISynthButton!
-
     @IBOutlet weak var monoButton: MIDISynthButton!
-
-	@IBOutlet weak var keyboardToggle: SynthButton!
-
+    @IBOutlet weak var keyboardToggle: SynthButton!
     @IBOutlet weak var octaveStepper: Stepper!
-
     @IBOutlet weak var transposeStepper: MIDIStepper!
-
     @IBOutlet weak var configKeyboardButton: SynthButton!
-
     @IBOutlet weak var bluetoothButton: AKBluetoothMIDIButton!
-
     @IBOutlet weak var modWheelSettings: SynthButton!
-
     @IBOutlet weak var midiLearnToggle: SynthButton!
-
     @IBOutlet weak var pitchBend: AKVerticalPad!
-
     @IBOutlet weak var modWheelPad: AKVerticalPad!
-    
     @IBOutlet weak var linkButton: AKLinkButton!
-
     weak var embeddedViewsDelegate: EmbeddedViewsDelegate?
-
     var topChildPanel: ChildPanel?
-
     var bottomChildPanel: ChildPanel?
-
     var prevBottomChildPanel: ChildPanel?
-
     var isPresetsDisplayed: Bool = false
-
     var activePreset = Preset()
-
     var midiInputs = [MIDIInput]()
-
     var notesFromMIDI = Set<MIDINoteNumber>()
-
     var appSettings = AppSettings()
-
     var isDevView = false
-
     var sustainMode = false
-
     var pcJustTriggered = false
-
     var midiControls = [MIDILearnable]()
-
     var signedMailingList = false
-
-    let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-
     var isPhoneX = false
-
     var isLoaded = false
+    let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
 
     // Python code to generate whiteKeysOnlyMap:
     // middleC = [60,60,61,61,62,63,63,64,64,65,65,66]
     // delta = [x - 60 for x in middleC]
     // w = [((60+7*math.floor((x-60)/12)) + delta[(x-60)%12]) for x in range(0,128) ]
-    // retVal = ""
+    // whiteKeysOnlyMap = ""
     // for x in range(0,128):
-    //    retVal += str((60+7*math.floor((x-60)/12)) + delta[(x-60)%12])
-    //    retVal += ", "
-    // print(retVal) # use this in Swift array declaration
+    //    whiteKeysOnlyMap += str((60+7*math.floor((x-60)/12)) + delta[(x-60)%12])
+    //    whiteKeysOnlyMap += ", "
+    // print(whiteKeysOnlyMap) # use this in Swift array declaration
     let whiteKeysOnlyMap: [MIDINoteNumber] = [
         25, 25, 26, 26, 27, 28, 28, 29, 29, 30, 30, 31,
         32, 32, 33, 33, 34, 35, 35, 36, 36, 37, 37, 38,
@@ -120,6 +80,7 @@ public class Manager: UpdatableViewController, AudioRecorderFileDelegate {
     private var audioUnitPropertyListener: AudioUnitPropertyListener!
 
     // MARK: - Define child view controllers
+
     lazy var envelopesPanel: EnvelopesPanelController = {
         let envelopesStoryboard = UIStoryboard(name: "Envelopes", bundle: Bundle.main)
         var vcName = ChildPanel.envelopes.identifier()
@@ -184,7 +145,6 @@ public class Manager: UpdatableViewController, AudioRecorderFileDelegate {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        
         let modelName = UIDevice.current.modelName
         
         // Conductor start
@@ -222,6 +182,8 @@ public class Manager: UpdatableViewController, AudioRecorderFileDelegate {
         // Load Presets
         displayPresetsController()
 
+        // MARK: - MIDI
+
         DispatchQueue.global(qos: .userInteractive).async {
             AudioKit.midi.createVirtualInputPort(95_433, name: "AudioKit Synth One")
             AudioKit.midi.openOutput(name: "AudioKit Synth One")
@@ -229,6 +191,7 @@ public class Manager: UpdatableViewController, AudioRecorderFileDelegate {
         AudioKit.midi.addListener(self)
 
         // Pre-load views and Set initial subviews
+        // Inefficient and at odds with the definition of "lazy"
         switchToChildPanel(.sequencer, isOnTop: true)
         switchToChildPanel(.sequencer, isOnTop: false)
         switchToChildPanel(.effects, isOnTop: true)
@@ -242,7 +205,7 @@ public class Manager: UpdatableViewController, AudioRecorderFileDelegate {
         add(asChildViewController: devViewController, isTopContainer: true)
         devViewController.view.removeFromSuperview()
 
-        // IAA MIDI
+        // MARK: - IAA MIDI
         #if !targetEnvironment(macCatalyst)
         var callbackStruct = AudioOutputUnitMIDICallbacks(
             userData: nil,
@@ -253,12 +216,10 @@ public class Manager: UpdatableViewController, AudioRecorderFileDelegate {
                 print("Not handling sysex")
             }
         )
-
         guard let outputAudioUnit = AudioKit.engine.outputNode.audioUnit else {
             AKLog("ERROR: can't create outputAudioUnit")
             return
         }
-
         let connectIAAMDI = AudioUnitSetProperty(outputAudioUnit,
                                                  kAudioOutputUnitProperty_MIDICallbacks,
                                                  kAudioUnitScope_Global,
@@ -269,29 +230,33 @@ public class Manager: UpdatableViewController, AudioRecorderFileDelegate {
             AKLog("Cannot create outpoutAudioUnit of type: kAudioOutputUnitProperty_MIDICallbacks")
         }
         #endif
-		holdButton.accessibilityValue = self.keyboardView.holdMode ?
-			NSLocalizedString("On", comment: "On") :
-			NSLocalizedString("Off", comment: "Off")
-
-		monoButton.accessibilityValue = self.keyboardView.polyphonicMode ?
-			NSLocalizedString("Off", comment: "Off") :
-			NSLocalizedString("On", comment: "On")
-        
+        holdButton.accessibilityValue = self.keyboardView.holdMode ?
+            NSLocalizedString("On", comment: "On") :
+            NSLocalizedString("Off", comment: "Off")
+        monoButton.accessibilityValue = self.keyboardView.polyphonicMode ?
+            NSLocalizedString("Off", comment: "Off") :
+            NSLocalizedString("On", comment: "On")
         isPhoneX = modelName == "iPhone X" || modelName == "iPhone XS" || modelName == "iPhone XS Max" || modelName == "iPhone XR" || modelName == "iPhone 11" || modelName == "iPhone 11 Pro" || modelName == "iPhone 11 Pro Max"
         if isPhoneX {
             self.keyboardLeftConstraint?.constant = 72.5
             self.keyboardRightConstraint?.constant = 72.5
         }
+        Audiobus.client?.controller.stateIODelegate = self
+        conductor.audioBusMidiDelegate = self
 
-       Audiobus.client?.controller.stateIODelegate = self
-       conductor.audioBusMidiDelegate = self
+        // notifications
+        registerForNotifications()
     }
+
+
     
     // Hide home bar on newer iPhones/iPad
     override public var prefersHomeIndicatorAutoHidden: Bool {
         return true
     }
 
+    // MARK: - viewDidAppear
+    
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         guard !isLoaded else { return }
@@ -322,10 +287,14 @@ public class Manager: UpdatableViewController, AudioRecorderFileDelegate {
         if appSettings.presetsVersion < currentPresetVersion {
             if conductor.device == .pad {
                 if appSettings.presetsVersion < 1.24 && !appSettings.firstRun {
-                    performSegue(withIdentifier: "SegueToApps", sender: nil) 
+               //     performSegue(withIdentifier: "SegueToApps", sender: nil) 
                 }
-                if appSettings.presetsVersion < 1.3 && !appSettings.firstRun {
-                    performSegue(withIdentifier: "SegueToFM", sender: nil)
+                if appSettings.presetsVersion < 1.8 && !appSettings.firstRun {
+                //    performSegue(withIdentifier: "SegueToHM", sender: nil)
+                }
+            } else {
+                if appSettings.presetsVersion < 1.8 && !appSettings.firstRun {
+                //    performSegue(withIdentifier: "SegueToPhoneHM", sender: nil)
                 }
             }
             
@@ -347,7 +316,6 @@ public class Manager: UpdatableViewController, AudioRecorderFileDelegate {
             appSettings.presetsVersion = currentPresetVersion
             saveAppSettings()
         }
-
         presetsViewController.loadBanks()
 
         // Set Initial Preset from last used Bank & Preset
@@ -365,11 +333,9 @@ public class Manager: UpdatableViewController, AudioRecorderFileDelegate {
             AKSettings.bufferLength = .veryLong
             try? AVAudioSession.sharedInstance().setPreferredIOBufferDuration(AKSettings.bufferLength.duration)
         }
-        
         if appSettings.firstRun && (modelName == "iPhone SE" || modelName == "iPhone 5s" || modelName == "iPhone 5c") {
             iPhoneRequirementWarning()
         }
-        
         if appSettings.firstRun && (modelName == "iPhone 6" || modelName == "iPhone 6s" || modelName == "iPhone 7" || modelName == "iPhone 8" || modelName == "iPhone 6 Plus" || modelName == "iPhone 6s Plus" || modelName == "iPhone 7 Plus" || modelName == "iPhone 8 Plus") {
             if UIScreen.main.nativeScale != UIScreen.main.scale {
                 iPhoneZoomWarning()
@@ -386,7 +352,7 @@ public class Manager: UpdatableViewController, AudioRecorderFileDelegate {
         if appSettings.launches % 50 == 0 && !appSettings.isPreRelease && appSettings.launches > 0 { requestReview() }
 
         // Sharing is Caring
-        if appSettings.launches % 7 == 0 && appSettings.launches > 0 {
+        if appSettings.launches % 15 == 0 && appSettings.launches > 0 {
             if conductor.device == .phone {
                 performSegue(withIdentifier: "SegueToPhoneShare", sender: self)
             } else {
@@ -416,6 +382,7 @@ public class Manager: UpdatableViewController, AudioRecorderFileDelegate {
         appSettings.firstRun = false
         saveAppSettingValues()
 
+        // midi controls
         appendMIDIControls(fromViewController: generatorsPanel)
         appendMIDIControls(fromViewController: envelopesPanel)
         appendMIDIControls(fromViewController: fxPanel)
@@ -426,8 +393,13 @@ public class Manager: UpdatableViewController, AudioRecorderFileDelegate {
         appendMIDIControl(holdButton)
         appendMIDIControl(monoButton)
 
+        // link
         setupLinkStuff()
+
+        // audio recorder
         conductor.audioRecorder?.fileDelegate = self
+
+        // loading complete
         isLoaded = true
     }
 
@@ -449,11 +421,12 @@ public class Manager: UpdatableViewController, AudioRecorderFileDelegate {
         midiControls.append(control)
     }
 
-
     func stopAllNotes() {
         self.keyboardView.allNotesOff()
         conductor.synth.stopAllNotes()
     }
+
+    // MARK: - updateUI
 
     override func updateUI(_ parameter: S1Parameter, control inputControl: S1Control?, value: Double) {
 
@@ -462,13 +435,11 @@ public class Manager: UpdatableViewController, AudioRecorderFileDelegate {
             AKLog("ParentViewController can't update global UI because synth is not instantiated")
             return
         }
-
         let isMono = s.getSynthParameter(.isMono)
         if isMono != monoButton.value {
             monoButton.value = isMono
             self.keyboardView.polyphonicMode = (isMono == 0) ? true : false
         }
-        
         if parameter == .cutoff {
             if inputControl === modWheelPad || activePreset.modWheelRouting != 0 {
                 return
@@ -483,9 +454,10 @@ public class Manager: UpdatableViewController, AudioRecorderFileDelegate {
         }
     }
 
+    // MARK: - state
+
     func dependentParameterDidChange(_ dependentParameter: DependentParameter) {
         switch dependentParameter.parameter {
-
         case .lfo1Rate:
             if dependentParameter.payload == conductor.lfo1RateModWheelID {
                 return
@@ -493,7 +465,6 @@ public class Manager: UpdatableViewController, AudioRecorderFileDelegate {
             if activePreset.modWheelRouting == 1 {
                 modWheelPad.setVerticalValue01(Double(dependentParameter.normalizedValue))
             }
-
         case .lfo2Rate:
             if dependentParameter.payload == conductor.lfo2RateModWheelID {
                 return
@@ -501,13 +472,11 @@ public class Manager: UpdatableViewController, AudioRecorderFileDelegate {
             if activePreset.modWheelRouting == 2 {
                 modWheelPad.setVerticalValue01(Double(dependentParameter.normalizedValue))
             }
-
         case .pitchbend:
             if dependentParameter.payload == conductor.pitchBendID {
                 return
             }
             pitchBend.setVerticalValue01(Double(dependentParameter.normalizedValue))
-
         default:
             _ = 0
         }
@@ -518,14 +487,12 @@ public class Manager: UpdatableViewController, AudioRecorderFileDelegate {
         var filesToShare = [Any]()
         filesToShare.append(fileURL)
         let activityViewController = UIActivityViewController(activityItems: filesToShare, applicationActivities: nil)
-
         if UIDevice.current.userInterfaceIdiom == .pad {
             activityViewController.popoverPresentationController?.sourceView = self.view
             activityViewController.popoverPresentationController?.sourceRect = CGRect(x: view.bounds.midX, y: view.bounds.midY, width: 0, height: 0)
             activityViewController.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.init(rawValue: 0)
         }
         activityViewController.excludedActivityTypes = [.assignToContact]
-
         self.present(activityViewController, animated: false, completion: {})
     }
 }

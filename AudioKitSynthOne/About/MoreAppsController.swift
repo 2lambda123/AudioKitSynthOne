@@ -15,7 +15,7 @@ class MoreAppsController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        moreView.layer.borderColor = #colorLiteral(red: 0.06666666667, green: 0.06666666667, blue: 0.06666666667, alpha: 1)
+        moreView.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.5)
         moreView.layer.borderWidth = 2
         moreView.layer.cornerRadius = 6
         
@@ -43,10 +43,35 @@ class MoreAppsController: UIViewController {
         }
     }
     
+    @IBAction func appDropButtonPressed(_ sender: UIButton) {
+        if let url = URL(string: "https://audiokitpro.com/appdrops/") {
+            UIApplication.shared.open(url)
+        }
+    }
+
+    @IBAction func retroPianoPressed(_ sender: UIButton) {
+        if let url = URL(string: "https://audiokitpro.com/retropiano/") {
+            UIApplication.shared.open(url)
+        }
+    }
+
+
+    @IBAction func audiokitAppsPressed(_ sender: UIButton) {
+        if let url = URL(string: "https://apps.apple.com/us/developer/audiokit-pro/id1307785645") {
+            UIApplication.shared.open(url)
+        }
+    }
+
     @IBAction func getFMPlayer(_ sender: Any) {
         if let url = URL(string: "https://itunes.apple.com/app/apple-store/id1307785646?mt=8") {
             UIApplication.shared.open(url)
         }
     }
+
+    @IBAction func getHeyMetronome(_ sender: Any) {
+         if let url = URL(string: "https://apps.apple.com/us/app/audiokit-hey-metronome/id1492023479") {
+             UIApplication.shared.open(url)
+         }
+     }
     
 }

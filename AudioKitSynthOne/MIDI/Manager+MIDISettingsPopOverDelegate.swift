@@ -7,11 +7,12 @@
 //
 
 // MIDI Settings Pop Over Delegate
-
 extension Manager: MIDISettingsPopOverDelegate {
 
     func resetMIDILearn() {
-        for control in midiControls { control.midiCC = 255 }
+        for control in midiControls {
+            control.midiCC = 255
+        }
         saveAppSettingValues()
     }
 
@@ -26,9 +27,20 @@ extension Manager: MIDISettingsPopOverDelegate {
         saveAppSettingValues()
     }
 
-    func didToggleVelocity() {
+    func didToggleVelocitySensitiveMIDI() {
         appSettings.velocitySensitive = !appSettings.velocitySensitive
+        conductor.updateDisplayLabel("Velocity-Sensitive MIDI: \(appSettings.velocitySensitive == false ? "FALSE" : "TRUE")")
         saveAppSettingValues()
+    }
+
+    func didChangeVelocitySensitiveMIDISensitivity(_ value: Double) {
+        appSettings.velocitySensitivity = value
+        conductor.updateDisplayLabel("MIDI Velocity Sensitivity: \(appSettings.velocitySensitivity.decimalString)")
+        saveAppSettingValues()
+    }
+
+    func velocitySensitiveMIDISettingValue() -> Bool {
+        return appSettings.velocitySensitive
     }
 
     func didChangeMIDISources(_ midiSources: [MIDIInput]) {
@@ -57,5 +69,4 @@ extension Manager: MIDISettingsPopOverDelegate {
         appSettings.launchWithLastTuning = value
         saveAppSettingValues()
     }
-
 }

@@ -10,11 +10,11 @@
 
 #import <AudioKit/AKAudioUnit.h>
 #import "S1Parameter.h"
+#import "S1MessageQueues.h"
 
 #define S1_MAX_POLYPHONY (6)
 #define S1_NUM_MIDI_NOTES (128)
 
-@class AEMessageQueue;
 
 // helper for midi/render thread communication: held+playing notes
 typedef struct NoteNumber {
@@ -46,7 +46,7 @@ typedef struct HeldNotes {
     bool heldNotes[S1_NUM_MIDI_NOTES];
 } HeldNotes;
 
-// helper for main+render thread communcation: arp beat counter, and number of held notes
+// helper for main+render thread communication: arp beat counter, and number of held notes
 typedef struct S1ArpBeatCounter {
     int beatCounter;
     int heldNotesCount;
@@ -54,44 +54,35 @@ typedef struct S1ArpBeatCounter {
 
 
 @protocol S1Protocol
-
 -(void)dependentParameterDidChange:(DependentParameter)dependentParam;
-
 -(void)arpBeatCounterDidChange:(S1ArpBeatCounter)arpBeatCounter;
-
 -(void)heldNotesDidChange:(HeldNotes)heldNotes;
-
 -(void)playingNotesDidChange:(PlayingNotes)playingNotes;
-
 @end
 
 @interface S1AudioUnit : AKAudioUnit
 {
     @public
-    AEMessageQueue  *_messageQueue;
+    AEMessageQueueDependentParameter* _messageQueueDependentParameter;
+    AEMessageQueueBeatCounter* _messageQueueBeatCounter;
+    AEMessageQueuePlayingNotes* _messageQueuePlayingNotes;
+    AEMessageQueueHeldNotes* _messageQueueHeldNotes;
 }
-
 @property (nonatomic) NSArray *parameters;
 @property (nonatomic, weak) id<S1Protocol> s1Delegate;
-
-
 - (float)getSynthParameter:(S1Parameter)param;
 - (void)setSynthParameter:(S1Parameter)param value:(float)value;
 - (float)getDependentParameter:(S1Parameter)param;
 - (void)setDependentParameter:(S1Parameter)param value:(float)value payload:(int)payload;
-
 - (float)getMinimum:(S1Parameter)param;
 - (float)getMaximum:(S1Parameter)param;
 - (float)getDefault:(S1Parameter)param;
-
 - (void)setupWaveform:(UInt32)tableIndex size:(int)size;
 - (void)setWaveform:(UInt32)tableIndex withValue:(float)value atIndex:(UInt32)sampleIndex;
 - (void)setBandlimitFrequency:(UInt32)blIndex withFrequency:(float)frequency;
-
 - (void)stopNote:(uint8_t)note;
 - (void)startNote:(uint8_t)note velocity:(uint8_t)velocity;
 - (void)startNote:(uint8_t)note velocity:(uint8_t)velocity frequency:(float)frequency;
-
 - (void)reset;
 - (void)stopAllNotes;
 - (void)resetDSP;

@@ -12,6 +12,7 @@
 #import "S1DSPKernel.hpp"
 #import "AEArray.h"
 #import "S1NoteState.hpp"
+#import "S1DSPHorizon.hpp"
 
 using namespace std::placeholders;
 
@@ -108,13 +109,22 @@ void S1DSPKernel::init(int _channels, double _sampleRate) {
 
     _rate.init();
 
-    // intialize dsp tuning table with 12ET
+    // initialize dsp tuning table with 12ET
     for(int i = 0; i < 128; i++) {
         tuningTable[i].store(440. * exp2((i - 69)/12.));
     }
 
     // restore values
     restoreValues(std::nullopt);
+    
+    for (int i = 0; i < S1Parameter::S1ParameterCount; i++) {
+        if (s1p[i].usePortamento) {
+            portamentoParameterIndexes.push_back(i);
+        }
+    }
+    
+    horizon = std::make_unique<S1DSPHorizon>(_sampleRate, minimum(bitCrushSampleRate));
+    
     mIsInitialized = true;
 }
 
@@ -124,8 +134,8 @@ void S1DSPKernel::setupParameterTree(std::optional<DSPParameters> params) {
         const float value = (params != std::nullopt) ? (*params)[i] : defaultValue((S1Parameter)i);
         if (s1p[i].usePortamento) {
             s1p[i].portamentoTarget = value;
-            sp_port_init(sp, s1p[i].portamento, value);
-            s1p[i].portamento->htime = S1_PORTAMENTO_HALF_TIME;
+            sp_port_init(sp, s1p[i].portamento, S1_PORTAMENTO_HALF_TIME);
+            updatePortamentoInternalValues(s1p[i].portamento);
         }
         parameters[i] = value;
     }
