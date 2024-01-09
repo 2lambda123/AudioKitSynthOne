@@ -1,0 +1,178 @@
+repo_name: 2lambda123/AudioKitSynthOne
+report_id: 62e84241048da4a023927a752107bdbb
+version: 0.1
+repo_type: Public
+timestamp: '2024-01-09T08:02:28+00:00'
+requested_by: 2lambda123
+provider: github
+branch: master
+detected_tools_count: 14
+tools:
+- name: C lang
+  description: One of the most widely used programming languages of all time
+  website_url: http://en.wikipedia.org/wiki/C_(programming_language)
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/no-img-open-source.png
+  detection_source_url: https://github.com/2lambda123/AudioKitSynthOne
+  detection_source: Repo Metadata
+- name: C++
+  description: Has imperative, object-oriented and generic programming features, while
+    also providing the facilities for low level memory manipulation
+  website_url: http://www.cplusplus.com/
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/1049/cplusplus.png
+  detection_source_url: https://github.com/2lambda123/AudioKitSynthOne
+  detection_source: Repo Metadata
+- name: Objective-C
+  description: The primary programming language you use when writing software for
+    OS X and iOS
+  website_url: https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Introduction/Introduction.html
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/1008/xcode.png
+  detection_source_url: https://github.com/2lambda123/AudioKitSynthOne
+  detection_source: Repo Metadata
+- name: Ruby
+  description: A dynamic, interpreted, open source programming language with a focus
+    on simplicity and productivity
+  website_url: https://www.ruby-lang.org
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/989/ruby.png
+  detection_source_url: https://github.com/2lambda123/AudioKitSynthOne
+  detection_source: Repo Metadata
+- name: Swift
+  description: 'An innovative new programming language for Cocoa and Cocoa Touch. '
+  website_url: https://developer.apple.com/swift/
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/1009/tuHsaI2U.png
+  detection_source_url: https://github.com/2lambda123/AudioKitSynthOne
+  detection_source: Repo Metadata
+- name: Git
+  description: Fast, scalable, distributed revision control system
+  website_url: http://git-scm.com/
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Version Control System
+  image_url: https://img.stackshare.io/service/1046/git.png
+  detection_source_url: https://github.com/2lambda123/AudioKitSynthOne
+  detection_source: Repo Metadata
+- name: Travis CI
+  description: A hosted continuous integration service for open source and private
+    projects
+  website_url: http://travis-ci.com/
+  open_source: false
+  hosted_saas: true
+  category: Build, Test, Deploy
+  sub_category: Continuous Integration
+  image_url: https://img.stackshare.io/service/460/Lu6cGu0z_400x400.png
+  detection_source_url: https://github.com/2lambda123/AudioKitSynthOne/blob/master/.travis.yml
+  detection_source: ".travis.yml"
+  last_updated_by: Stephane Peter
+  last_updated_on: 2018-07-22 08:23:56.000000000 Z
+- name: OneSignal
+  description: A high volume push notification service for websites and mobile applications
+  website_url: https://onesignal.com
+  open_source: false
+  hosted_saas: true
+  category: Communications
+  sub_category: Mobile Push Messaging
+  image_url: https://img.stackshare.io/service/840/mlv-oiNN_400x400.jpg
+  detection_source_url: https://github.com/2lambda123/AudioKitSynthOne/blob/master/Podfile
+  detection_source: Podfile
+  last_updated_by: Stephane Peter
+  last_updated_on: 2018-09-18 18:40:58.000000000 Z
+- name: CocoaPods
+  description: A dependency manager for Swift and Objective-C Cocoa projects
+  website_url: https://cocoapods.org/
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: CocoaPods Packages
+  image_url: https://img.stackshare.io/service/2426/e1cbdef9d4b11484049a033886578e54_400x400.png
+  detection_source_url: https://github.com/2lambda123/AudioKitSynthOne/blob/master/Podfile.lock
+  detection_source: Podfile.lock
+  last_updated_by: Aurelius Prochazka
+  last_updated_on: 2019-11-03 01:12:49.000000000 Z
+- name: Shell
+  description: A shell is a text-based terminal, used for manipulating programs and
+    files. Shell scripts typically manage program execution.
+  website_url: https://en.wikipedia.org/wiki/Shell_script
+  open_source: false
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/4631/default_c2062d40130562bdc836c13dbca02d318205a962.png
+  detection_source_url: https://github.com/2lambda123/AudioKitSynthOne
+  detection_source: Repo Metadata
+- name: AppCenter
+  description: Visual Studio App Center is your continuous integration
+  package_url: https://cocoapods.org/pods/AppCenter
+  version: 2.5.0
+  license: ''
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: CocoaPods Packages
+  image_url: https://img.stackshare.io/package/cocoapods/image.png
+  detection_source_url: https://github.com/2lambda123/AudioKitSynthOne/blob/master/Podfile.lock
+  detection_source: Podfile
+  last_updated_by: sieren
+  last_updated_on: 2019-05-08 17:27:57.000000000 Z
+- name: AudioKit
+  description: Open-source audio synthesis
+  package_url: https://cocoapods.org/pods/AudioKit
+  version: 4.9.2
+  license: ''
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: CocoaPods Packages
+  image_url: https://img.stackshare.io/package/cocoapods/image.png
+  detection_source_url: https://github.com/2lambda123/AudioKitSynthOne/blob/master/Podfile.lock
+  detection_source: Podfile
+  last_updated_by: Aurelius Prochazka
+  last_updated_on: 2019-11-03 01:12:49.000000000 Z
+- name: Audiobus
+  description: The Audiobus SDK, for iOS audio routing
+  package_url: https://cocoapods.org/pods/Audiobus
+  version: 3.0.9
+  license: ''
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: CocoaPods Packages
+  image_url: https://img.stackshare.io/package/cocoapods/image.png
+  detection_source_url: https://github.com/2lambda123/AudioKitSynthOne/blob/master/Podfile.lock
+  detection_source: Podfile
+  last_updated_by: Aurelius Prochazka
+  last_updated_on: 2019-11-03 01:12:49.000000000 Z
+- name: Disk
+  description: Delightful framework for iOS to easily persist structs
+  package_url: https://cocoapods.org/pods/Disk
+  version: 0.3.3
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: CocoaPods Packages
+  image_url: https://img.stackshare.io/package/cocoapods/image.png
+  detection_source_url: https://github.com/2lambda123/AudioKitSynthOne/blob/master/Podfile.lock
+  detection_source: Podfile
+  last_updated_by: Stephane Peter
+  last_updated_on: 2018-09-18 23:10:22.000000000 Z
