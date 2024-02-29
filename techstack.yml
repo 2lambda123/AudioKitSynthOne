@@ -2,7 +2,7 @@ repo_name: 2lambda123/AudioKitSynthOne
 report_id: 62e84241048da4a023927a752107bdbb
 version: 0.1
 repo_type: Public
-timestamp: '2024-01-09T08:02:28+00:00'
+timestamp: '2024-02-29T19:18:58+00:00'
 requested_by: 2lambda123
 provider: github
 branch: master
@@ -52,7 +52,7 @@ tools:
   detection_source_url: https://github.com/2lambda123/AudioKitSynthOne
   detection_source: Repo Metadata
 - name: Swift
-  description: 'An innovative new programming language for Cocoa and Cocoa Touch. '
+  description: An innovative new programming language for Cocoa and Cocoa Touch.
   website_url: https://developer.apple.com/swift/
   license: Apache-2.0
   open_source: true
